@@ -28,8 +28,8 @@ gf_reducer <- function(mapped) {
     }, mapped, seq_along(mapped))
 
     # Coerce to mat
-    # mapped <- do.call(pryr::partial(c, x=GPos()), mapped)
-    mapped <- do.call(pryr::partial(c, x = GRanges()), mapped)
+    # mapped <- do.call(purrr::partial(c, x=GPos()), mapped)
+    mapped <- do.call(purrr::partial(c, x = GRanges()), mapped)
 
     # Add i (erase mcols to save memory)
     # dj <- unique(granges(mapped)) # Old version, coerced to GRanges
@@ -67,7 +67,7 @@ gf_reducer <- function(mapped) {
 
 gf_wrapper <- function(files, ranges, seqinfo, strand) {
     # Run GenomicFiles
-    o <- GenomicFiles::reduceByRange(ranges = ranges, files = files, MAP = pryr::partial(gf_mapper,
+    o <- GenomicFiles::reduceByRange(ranges = ranges, files = files, MAP = purrr::partial(gf_mapper,
         seqinfo = seqinfo, strand = strand), REDUCE = gf_reducer, iterate = FALSE)
 
     # Merge output
@@ -201,7 +201,7 @@ quantifyCTSSs2 <- function(plusStrand, minusStrand, design = NULL, genome = NULL
     message("Number of CTSSs: ", format(nrow(o)/1000000L, digits = 4), " millions")
     message("Sparsity: ", format((1 - (Matrix::nnzero(assay(o))/length(assay(o)))) *
         100, digits = 4), " %")
-    message("Final object size: ", utils::capture.output(pryr::object_size(o)))
+    message("Final object size: ", utils::capture.output(lobstr::obj_size(o)))
 
     # Return
     o

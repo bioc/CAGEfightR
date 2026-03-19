@@ -43,8 +43,8 @@ quantifyClusters(exampleCTSSs, rowRanges(exampleUnidirectional), sparse=TRUE)
 }
 \seealso{
 Other Quantification functions: 
-\code{\link{quantifyCTSSs2}()},
 \code{\link{quantifyCTSSs}()},
+\code{\link{quantifyCTSSs2}()},
 \code{\link{quantifyGenes}()}
 }
 \concept{Quantification functions}

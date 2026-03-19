@@ -127,7 +127,7 @@ gf_wrapper2 <- function(files, ranges, seqinfo, strand) {
     # Run GenomicFiles
     o <- GenomicFiles::reduceByRange(ranges = ranges,
                                      files = files,
-                                     MAP = pryr::partial(bw_mapper,
+                                     MAP = purrr::partial(bw_mapper,
                                                          seqinfo = seqinfo,
                                                          strand = strand),
                                      REDUCE = gf_reducer2,
@@ -414,7 +414,7 @@ setMethod("quantifyCTSSs",
       message("Sparsity: ", format(zero_frac * 100, digits=4), " %")
       #message("Type of DelayedArray seed: dgCMatrix")
       message("Type of rowRanges: ", class(rowRanges(o)))
-      message("Final object size: ", utils::capture.output(pryr::object_size(o)))
+      message("Final object size: ", utils::capture.output(lobstr::obj_size(o)))
 
       # Return
       o
@@ -490,7 +490,7 @@ setMethod("quantifyCTSSs",
               message("Sparsity: ", format(zero_frac * 100, digits=4), " %")
               #message("Type of DelayedArray seed: dgCMatrix")
               message("Type of rowRanges: ", class(rowRanges(o)))
-              message("Final object size: ", utils::capture.output(pryr::object_size(o)))
+              message("Final object size: ", utils::capture.output(lobstr::obj_size(o)))
 
               # Return
               o
